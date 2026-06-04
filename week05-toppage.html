@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week05 トップページ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="bg-blue-500 flex flex-col justify-center md:flex-row md:justify-between md:items-center p-2">
+        <img src="images/logo.school.png" alt="TOWAschoolのロゴ" class="w-36 h-24 object-cover">
+        <div class="flex flex-col justify-center md:flex-row gap-2 mr-4 font-serif">
+            <a href="#" class="font-bold text-white hover:text-blue-200">About</a>
+            <a href="#" class="font-bold text-white hover:text-blue-200">Course</a>
+            <a href="#" class="font-bold text-white hover:text-blue-200">Blog</a>
+            <a href="#" class="font-bold text-white hover:text-blue-200">Access</a>
+        </div>
+    </header>
+    <div class="relative hidden md:block">
+        <img src="images/hero.school.png" alt="ヒーロー画像" class="w-full h-64 object-cover">
+        <span class="absolute top-32 left-16 font-serif text-lg md:text-2xl">未来をつくる人材に</span>
+    </div>
+        <h2 class="text-1xl md:text-3xl font-serif text-center mt-32 mb-8">ACTIVITY</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-8 mb-16">
+            <div class="shadow-lg font-serif pb-4 hover:scale-105 transition">
+                <img src="images/activity1.png" alt="活動1" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-bold md:text-1xl mx-2">プログラミング学習</h3>
+                <p class="text-sm text-gray-700 mb-4 mx-2">プログラミングやデザインなど、様々な分野のコースを提供しています。</p>
+            </div>
+            <div class="shadow-lg font-serif pb-4 hover:scale-105 transition">
+                <img src="images/activity2.png" alt="活動2" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-bold md:text-1xl mx-2">ハッカソン</h3>
+                <p class="text-sm text-gray-700 mb-4 mx-2">定期的に開発競争大会を開催します。</p>
+            </div>
+            <div class="shadow-lg font-serif pb-4 hover:scale-105 transition">
+                <img src="images/activity3.png" alt="活動3" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-bold md:text-1xl mx-2">インターンシップ</h3>
+                <p class="text-sm text-gray-700 mb-4 mx-2">実際のプロジェクトに参加し、実践的な経験を積む機会を提供しています。</p>
+            </div>
+            <div class="shadow-lg font-serif pb-4 hover:scale-105 transition">
+                <img src="images/activity4.png" alt="活動4" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-bold md:text-1xl mx-2">コミュニティイベント</h3>
+                <p class="text-sm text-gray-700 mb-4 mx-2">定期的に交流会やワークショップを開催し、仲間と切磋琢磨できる環境を提供しています。</p>
+            </div>
+            <div class="shadow-lg font-serif pb-4 hover:scale-105 transition">
+                <img src="images/activity5.png" alt="活動5" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-bold md:text-1xl mx-2">メンタリング</h3>
+                <p class="text-sm text-gray-700 mb-4 mx-2">経験豊富なメンターが、学習やキャリアの相談に乗ります。</p>
+            </div>
+            <div class="shadow-lg font-serif pb-4 hover:scale-105 transition">
+                <img src="images/activity6.png" alt="活動6" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-bold md:text-1xl mx-2">プロジェクトベース学習</h3>
+                <p class="text-sm text-gray-700 mb-4 mx-2">実際のプロジェクトを通じて、実践的なスキルを身につけることができます。</p>
+            </div>
+        </div>
+
+        <h2 class="text-1xl md:text-3xl font-serif text-center mt-32 mb-8">Course</h2>
+        <div class="mb-16 font-serif p-8">
+            <div class="flex flex-col md:flex-row gap-4 shadow-lg hover:scale-105 transition my-8">
+                <img src="images/course1.png" alt="コース1" class="w-full md:w-1/2 h-48 object-cover">
+                <div class="hidden md:block md:w-1/2 gap-4 space-y-4">
+                    <h3 class="text-lg font-bold md:text-1xl mx-2 text-center">Web開発コース</h3>
+                    <p class="text-sm text-gray-700 mb-4 mx-2">HTML、CSS、JavaScriptを学び、モダンなWebアプリケーションを開発するスキルを身につけます。</p>
+                </div>
+                <h3 class="block md:hidden text-lg font-bold text-center mb-4">Web開発コース</h3>
+            </div>
+            <div class="flex flex-col md:flex-row gap-4 shadow-lg font-serif hover:scale-105 transition">
+                <img src="images/course2.png" alt="コース2" class="w-full md:w-1/2 h-48 object-cover">
+                <div class="hidden md:block md:w-1/2 gap-4 space-y-4">
+                    <h3 class="text-lg font-bold md:text-1xl mx-2 text-center">データサイエンスコース</h3>
+                    <p class="text-sm text-gray-700 mb-4 mx-2">PythonやRを使用して、データの分析や可視化のスキルを習得します。</p>
+                </div>
+                <h3 class="block md:hidden text-lg font-bold text-center mb-4">データサイエンスコース</h3>
+            </div>
+            <div class="flex flex-col md:flex-row gap-4 shadow-lg font-serif hover:scale-105 transition my-8">
+                <img src="images/course3.png" alt="コース3" class="w-full md:w-1/2 h-48 object-cover">
+                <div class="hidden md:block md:w-1/2 gap-4 space-y-4">
+                    <h3 class="text-lg font-bold md:text-1xl mx-2 text-center">AI・機械学習コース</h3>
+                    <p class="text-sm text-gray-700 mb-4 mx-2">人工知能や機械学習の基礎から応用までを学び、実際のプロジェクトでスキルを磨きます。</p>
+                </div>
+                <h3 class="block md:hidden text-lg font-bold text-center mb-4">AI・機械学習コース</h3>
+            </div>
+        </div>
+    <footer class="flex flex-col justify-center bg-blue-800 text-white text-center p-8 mt-32 font-serif">
+        <img src="images/logo.school.png" alt="TOWAschoolのロゴ" class="w-64 h-64 object-cover mx-auto">
+        <span class="mb-2">〒192-0397 東京都八王子市</span>
+        <span class="mb-2">TEL : 042-123-786</span>
+        <span class="mb-2">MAIL : info@towatech.ac.jp</span>
+    </footer>
+</body>
+
+</html>
+
