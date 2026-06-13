@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week06 BMI計算ツール</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="flex flex-col md:flex-row justify-end gap-4 font-serif p-4">
+        <a href="#" class="p-2 hover:text-green-800 hover:border-b-2 hover:border-green-800">ホーム</a>
+        <a href="#calc" class="p-2 hover:text-green-800 hover:border-b-2 hover:border-green-800">BMI計算</a>
+        <a href="#" class="p-2 hover:text-green-800 hover:border-b-2 hover:border-green-800">健康ガイド</a>
+    </header>
+    <main class="bg-[url('images/week06haikei.png')] bg-cover bg-center min-h-screen py-32 px-8">
+        <div class="flex flex-col md:flex-row justify-between gap-4 items-end font-serif my-16 mx-8">
+            <div>
+                <h1 id="calc" class="text-5xl font-bold text-5xl">BMI計算</h1>
+                <p class="mt-4 text-lg text-gray-700">身長と体重を入力するだけで、あなたのBMIと判定がわかります。</p>
+            </div>
+            <div>
+                <p class="text-lg text-green-800">健康管理の第一歩を今日から始めましょう</p>
+            </div>        
+        </div>
+        <section class="grid drid-cols-1 md:grid-cols-2 gap-8 mt-12 font-serif">
+            <div class="bg-white rounded-lg shadow p-12">
+                <h1 class="text-2xl font-bold my-6">BMI計算</h1>
+                <div class="flex flex-col md:flex-row md:justify-between gap-2 mt-4 mb-8">
+                    <div>
+                        <label class="block text-lg font-medium text-gray-700">身長 (cm)</label>
+                        <input id="height" type="number" placeholder="例: 170" class="p-2 rounded-md border border-gray-200 focus:border-green-200 w-full">
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-medium text-gray-700">体重 (kg)</h2>
+                        <input id="weight" type="number" placeholder="例: 60" class="p-2 rounded-md border border-gray-200 focus:border-green-200 w-full">
+                    </div>
+                </div>
+                <button id="calcBmi" class="bg-green-600 text-white rounded-2xl font-xl p-4 hover:bg-green-700 w-full">BMIを計算</button>
+            </div>
+            <div class="bg-white rounded-lg shadow p-12">
+                <h2 class="text-lg mb-4">あなたのBMI</h2>
+                <div class="flex flex-col md:flex-row md:justify-around items-center my-4">
+                    <h1 id="result" class="text-8xl font-bold"></h1>
+                    <span id="level" class="text-gray-500 text-6xl font-bold textcenter p-4 my-4"></span>
+                </div>
+                <p id="error" class="text-red-900 text-xl textcenter"></p>
+                <p id="sentence" class="text-center text-xl my-8 text-gray-600"></p>
+            </div>
+        </section>   
+    </main>
+    <script>
+        function calcBmi(height, weight){
+            const hiM = height / 100;
+            return weight / (hiM * hiM);
+        }
+
+        function jud(bmi){
+            if (bmi < 18.5) {
+                return "痩せ型"
+            } else if (bmi < 25) {
+                return "標準"
+            } else {
+                return "肥満"
+            }
+        }
+
+        const button = document.querySelector("#calcBmi");
+        const result = document.querySelector("#result");
+        const level = document.querySelector("#level");
+        const error = document.querySelector("#error");
+        const sentence = document.querySelector("#sentence");
+
+        button.addEventListener("click", () => {
+            
+            error.textContent = "";
+            result.textContent = "";
+            level.textContent = "";
+
+            const height = Number(document.querySelector("#height").value);
+            const weight = Number(document.querySelector("#weight").value);
+
+            if (height <= 0 || weight <= 0) {
+                error.textContent = "もう一度身長と体重を入力してください";
+                return;
+            }
+
+            const bmi = calcBmi(height, weight);
+            const judgment = jud(bmi);
+
+            result.textContent = bmi.toFixed(1);
+            level.textContent = judgment;
+            sentence.textContent = "あなたのBMIは" + bmi.toFixed(1) + "で" + "（" + judgment + "）" + "です。";
+        });
+    </script>
+</body>
