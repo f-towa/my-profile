@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week07 todoList</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+    <main class="max-w-5xl mx-auto px-8 py-10">
+        <h1 class="text-5xl font-bold tracking-wide mb-6">ToDoList</h1>
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-7 mb-7">
+            <div class="bg-blue-500 rounded-xl p-8 text-white shadow-sm">
+                <p class="text-xl font-bold opacity-80 mb-8">未完了のタスク</p>
+                <p id="taskNum" class="text-6xl font-bold">0件</p>
+            </div>
+            <div class="bg-green-600 rounded-xl p-9 text-white shadow-sm">
+                <p class="text-xl font-bold opacity-80 mb-8">完了済み</p>
+                <p id="doneTask" class="text-6xl font-bold">0件</p>
+            </div>
+        </section>
+
+        
+        <section class="bg-white rounded-2xl shadow-md px-8 py-7">
+            <input id="todoInput" type="text" placeholder="タスクを入力..." class="w-full bg-white border border-gray-500 rounded-lg text-2xl p-4 mb-4">
+            <button id="addBtn" class="w-full bg-indigo-500 hover:bg-indigo-600 transition text-white font-bold text-2xl py-5 rounded-xl shadow-sm mb-8">タスクを追加</button>
+            <ul id="todoList" class="space-y-6"></ul>
+        </section>
+    </main>
+    <script>
+        const todoInput = document.querySelector("#todoInput");
+        const addBtn = document.querySelector("#addBtn");
+        const todoList = document.querySelector("#todoList");
+        let count = 0;
+        let done = 0;
+        const taskNum = document.querySelector("#taskNum");
+        const doneTask = document.querySelector("#doneTask");
+        addBtn.addEventListener("click", () => {
+            const text = todoInput.value;
+            if (text === "") {
+                return;
+            }
+            const item = document.createElement("li");
+            item.className = "flex items-center justify-between bg-gray-100 rounded p-4";
+            const span = document.createElement("span");
+            span.textContent = text;
+            const doneBtn = document.createElement("button");
+            doneBtn.textContent = "完了";
+            doneBtn.className = "text-gray-600 hover-text-gray-900";
+            count = count + 1;
+            taskNum.textContent = count;
+            doneBtn.addEventListener("click", () => {
+                const completedTask = span.classList.toggle("line-through");
+                span.classList.toggle("text-gray-300");
+                if (completedTask) {
+                    done = done + 1;
+                    count = count - 1;
+                } else {
+                    done = done - 1;
+                }
+                doneTask.textContent = done;
+                taskNum.textContent = count;
+            });
+            item.appendChild(span);
+            item.appendChild(doneBtn);
+            todoList.appendChild(item);
+            todoInput.value = "";
+        });
+        
+    </script>
+</body>
