@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー登録フォーム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-blue-200 via-white to-purple-100 px-4 py-10 flex justify-center items-center">
+
+    <main class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-gray-800">ユーザー登録</h1>
+            <p class="text-sm text-gray-500 mt-2">必要事項を入力して登録してください</p>
+        </div>
+
+        <form id="registerForm" novalidate class="space-y-5">
+            <div>
+                <label for="userName" class="block text-sm font-semibold text-gray-700 mb-1">名前</label>
+                <input
+                    id="name"
+                    type="text"
+                    placeholder="山田 太郎"
+                    required
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                >
+                <p id="nameError" class="mt-1 text-sm text-red-500"></p>
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">メールアドレス</label>
+                <input
+                    id="email"
+                    type="email"
+                    required
+                    placeholder="example@email.com"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                >
+                <p id="emailError" class="mt-1 text-sm text-red-500"></p>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">パスワード</label>
+                <input
+                    id="password"
+                    type="password"
+                    required
+                    placeholder="8文字以上で入力"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    >
+                    <p id="passwordError" class="mt-1 text-sm text-red-500"></p>
+            </div>
+            <div>
+                <label for="againpassword" class="block text-sm font-semibold text-gray-700 mb-1">パスワード(確認用)</label>
+                <input
+                    id="againPassword"
+                    type="password"
+                    required
+                    placeholder="確認用のためもう一度パスワードを入力"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    >
+                    <p id="againPasswordError" class="mt-1 text-sm text-red-500"></p>
+            </div>
+            <div>
+                <label class="flex items-start gap-3 cursor-pointer">
+                    <input
+                        id="terms"
+                        type="checkbox"
+                        required
+                        class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    >
+                    <span class="text-sm text-gray-700">利用規約に同意します</span>
+                </label>
+                <p id="termsError" class="mt-1 text-sm text-red-500"></p>
+            </div>
+            <p id="successMessage" class="text-sm font-semibold text-green-700 text-center"></p>
+            <button
+                id="submitButton"
+                type="submit"
+                class="w-full rounded-lg bg-blue-600 py-3 font-bold text-white shadow-md transition hover:bg-blue-700 active:scale-[0.98]"
+            >登録する</button>
+        </form>
+    </main>
+    <script>
+        const form = document.getElementById("registerForm");
+        const nameError = document.getElementById("nameError");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+        const termsError = document.getElementById("termsError");
+        const successMessage = document.getElementById("successMessage");
+        const againPasswordError = document.getElementById("againPasswordError");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            nameError.textContent = "";
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            termsError.textContent = "";
+            successMessage.textContent = "";
+            againPasswordError.textContent = "";
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const term = document.getElementById("terms").checked;
+            const againPassword = document.getElementById("againPassword").value;
+
+            if (name === "") {
+                nameError.textContent = "お名前を入力してください";
+                return;
+            }
+            if (email === "") {
+                emailError.textContent = "メールアドレスを入力してください";
+                return;
+            }
+            if (password === "") {
+                passwordError.textContent = "パスワードを入力してください";
+            } else if (password.length < 8) {
+                passwordError.textContent = "8文字以上のパスワードを入力してください";
+                return;
+            }
+            if (againPassword === "") {
+                againPasswordError.textContent = "確認用のパスワードを入力してください"
+                return;
+            }
+            if (password != againPassword) {
+                againPasswordError.textContent = "パスワードが一致しません"
+                return;
+            }
+            if (term === false) {
+                termsError.textContent = "利用規約に同意してください";
+                return;
+            }
+            
+            successMessage.textContent = "登録完了！"
+        });
+    </script>
+</body>
+</html>
