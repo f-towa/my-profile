@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub User Finder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-950 text-white">
+    <main class="min-h-screen flex items-center justify-center px-4 py-10">
+        <div class="w-full max-w-3xl">
+            <section class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300 mb-5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        GitHub API Search Tool
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">GitHub User Finder</h1>
+                <p class="text-slate-400 text-sm md:text-base">GitHubのユーザー名を入力して、プロフィール情報を検索できます。</p>
+            </section>
+            <section class="bg-slate-900/80 border border-slate-800 rounded-3xl shadow-2xl p-6 md:p-8 mb-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <label for="usernameInput" class="block text-sm font-medium text-slate-300 mb-2">GitHub Username</label>
+                        <input
+                            type="text"
+                            id="usernameInput"
+                            placeholder="例: octocat"
+                            class="w-full rounded-2xl bg-slate-950 border border-slate-700 px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400">
+                        </div>
+                    <div class="flex items-end">
+                        <button
+                            id="searchButton"
+                            type="button"
+                            class="w-full md:w-auto rounded-2xl bg-emerald-400 px-8 py-4 font-bold text-slate-950 hover:bg-emerald-300 transition shadow-lg shadow-emerald-400/20">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section
+                id="resultCard"
+                class="hidden bg-slate-900/80 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
+                <div class="h-28 bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 mb-4"></div>
+                <div class="px-6 md:px-8 pb-8">
+                    <div class="-mt-14 flex flex-col md:flex-row md:items-end gap-5">
+                        <img
+                            id="avatarImage"
+                            src=""
+                            alt="GitHub Avatar"
+                            class="w-28 h-28 rounded-3xl border-4 border-slate-900 bg-slate-800 object-cover"
+                        >
+                        <div class="pb-2">
+                            <h2 id="userName" class="text-3xl font-bold mt-2">User Name</h2>
+                            <p class="text-slate-400 text-sm mt-2">GitHub Profile</p>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-sm font-semibold text-slate-400 mb-2">Bio</h3>
+                        <p id="userBio" class="text-slate-200 leading-relaxed">ここに自己紹介が表示されます。</p>
+                    </div>
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="rounded-2xl bg-slate-950 border border-slate-800 p-5">
+                            <p class="text-sm text-slate-400 mb-2">Followers</p>
+                            <p id="followersCount" class="text-3xl font-bold text-emerald-400">0</p>
+                        </div>
+                        <div class="rounded-2xl bg-slate-950 border border-slate-800 p-5">
+                            <p class="text-sm text-slate-400 mb-2">Source</p>
+                            <p class="text-lg font-semibold">GitHub API</p>
+                        </div>
+                        <div class="rounded-2xl bg-slate-950 border border-slate-800 p-5">
+                            <p class="text-sm text-slate-400 mb-2">Status</p>
+                            <p class="text-lg font-semibold text-emerald-400">Success</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        const searchBtn = document.getElementById("searchButton");
+        const avatarImage = document.getElementById("avatarImage");
+        const resultCard = document.getElementById("resultCard");
+        const userBio = document.getElementById("userBio");
+        const userName = document.getElementById("userName");
+        const followersCount = document.getElementById("followersCount");
+        async function githubUser() {
+            const userId = document.getElementById("usernameInput").value;
+            const fetchId = "https://api.github.com/users/" + userId;
+            try {
+                const response = await fetch(fetchId);
+                if (!response.ok) {
+                    throw new Error("ユーザーが見つかりませんでした" + response.status);
+                }
+                resultCard.classList.remove("hidden");
+                const user = await response.json();
+                avatarImage.src = user.avatar_url;
+                userBio.textContent = user.bio;
+                userName.textContent = user.name;
+                followersCount.textContent = user.followers;
+            } catch(error) {
+                resultCard.textContent = "ユーザーに見つかりませんでした";
+                resultCard.classList.remove("hidden");
+                userBio.textContent = "ユーザーが見つかりませんでした";
+                userName.textContent = "";
+                followersCount.textContent = "";
+                avatarImage.src = "";
+            }
+        }
+        searchBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            githubUser();
+        });
+    </script>
+</body>
+</html>
