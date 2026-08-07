@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My portfolio</title>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <main class="w-full min-h-screen">
+        <header class="flex flex-col justify-center md:flex-row md:justify-between items-center p-4">
+            <h1 class="font-bold text-3xl">Portfolio</h1>
+            <div class="font-semibold text-lg">
+                <a href="#" class="mx-2 hover:text-blue-500">自己紹介</a>
+                <a href="#" class="mx-2 hover:text-blue-500">スキル</a>
+                <a href="#" class="mx-2 hover:text-blue-500">作品</a>
+                <a href="#" class="mx-2 hover:text-blue-500">お問い合わせ</a>
+            </div>
+        </header>
+        <div>
+            <img src="images/hero.school.png" class="relative w-full h-64 object-cover">
+            <div class="absolute top-32 left-32 text-center">
+                <p class="text-2xl font-bold">Web制作ポートフォリオ</p>
+                <P class="text-lg font-semibold text-gray-500">大学で学びながらWeb制作の技術をみにつけています</P>
+                <button href="#" class="my-8 bg-blue-300 p-4 rounded-full text-center font-bold hover:bg-blue-500">>作品を見る</button>
+            </div>
+        </div>
+        <div class="text-3xl font-bold text-center mt-8">自己紹介</div>
+        <section class="grid grid-cols-1 md:grid-cols-3 px-16 gap-4">
+            <card class="rounded-lg p-4 my-8 shadow-lg flex flex-col items-center justify-center cols-span-1">
+                <img src="images/S__69804051.jpg" class="rounded-full w-32 h-32 object-cover">
+                <div class="font-semibold">
+                    <h2>ニックネーム<span class="mx-2">Towa</span></h2>
+                    <h2>所属<span class="mx-4">中央大学商学部経営学科</span></h2>
+                    <h2>学年<span class="mx-4">1年</span></h2>
+                    <h2>趣味<span class="mx-4">スポーツ観戦、旅行</span></h2>
+                </div>
+            </card>
+            <card class="col-span-2 px-4 py-auto my-8 rounded-lg shadow-lg flex items-center">
+                <p class="text-center text-lg">初めまして、Towaです!大学で学びながらWeb制作をしています。ユーザーにとって見やすく使いやすいサイトを作ることを心がけています。</p>
+            </card>
+        </section>
+        <section class="bg-indigo-50 p-8">
+            <h2 class="text-3xl font-bold text-center mt-8 mb-4">スキルリスト</h2>
+            <ul class="flex flex-wrap gap-8 items-center justify-center">
+                <li class="transition-all duration-300 bg-white hover:scale-105 px-4 py-2 text-lg rounded-lg">HTML</li>
+                <li class="transition-all duration-300 bg-white hover:scale-105 px-4 py-2 text-lg rounded-lg">Tailwind CSS</li>
+                <li class="transition-all duration-300 bg-white hover:scale-105 px-4 py-2 text-lg rounded-lg">JAVAScript</li>
+            </ul>
+        </section>
+        <section class="splide max-w-4xl mx-auto mt-16" aria-label="制作作品 mt-16">
+            <h2 class="text-3xl text-center font-bold mb-4">作品</h2>
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="images/disneypage.png" alt="作品1"
+                            class=" w-full h-64 rounded-lg object-cover">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="images/bmipage.png" alt="作品2"
+                            class="w-full h-64 rounded-lg object-cover">
+                    </li>
+                </ul>
+            </div>
+        </section> 
+        <footer class="bg-ingigo-500 text-center py-6 mt-16">
+            <p>2026 Towa</p>
+        </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
